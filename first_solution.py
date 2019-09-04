@@ -7,9 +7,6 @@ def read_array(stream_array, n, i):
         return read_array(stream_array, n, i + 1)
     else:
         return stream_array
-
-def show(result):
-    print(result)
     
 def count_sum(a, i, sum):
     n = len(a)
@@ -17,6 +14,9 @@ def count_sum(a, i, sum):
         return count_sum(a, i + 1, sum + a[i])
     else:
         return sum
+
+def show(result):
+    print(result)
 
 def main():
     show(
