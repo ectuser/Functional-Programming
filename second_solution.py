@@ -1,14 +1,14 @@
 def get_number():
     return int(input())
 
-def function(number,  result, i):
+def check_numbers(number,  result, i):
     if (number == 0):
         return result
     last_number = is_number_odd(get_last_number(number))
     if (last_number != 0):
         result = get_result(result, last_number, i)
         i += 1
-    return function(number // 10, result, i)
+    return check_numbers(number // 10, result, i)
 
 def get_degree(i, degree, multiplication):
     if (i < degree):
@@ -30,7 +30,7 @@ def is_number_odd(number):
         return 0
 
 def main():
-    print(function(get_number(), 0, 0))
+    print(check_numbers(get_number(), 0, 0))
     return 0
 
 main()
