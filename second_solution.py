@@ -4,16 +4,11 @@ def get_number():
 def function(number,  result, i):
     if (number == 0):
         return result
-    res = is_number_odd(get_last_number(number))
-    if (res != 0):
-        print(res)
-        result = get_result(result, res, i)
+    last_number = is_number_odd(get_last_number(number))
+    if (last_number != 0):
+        result = get_result(result, last_number, i)
         i += 1
     return function(number // 10, result, i)
-
-def get_result(old_number, new_number, i):
-    multiptication = get_degree(0, i, 1)
-    return new_number * multiptication + old_number
 
 def get_degree(i, degree, multiplication):
     if (i < degree):
@@ -21,8 +16,9 @@ def get_degree(i, degree, multiplication):
     else:
         return multiplication
 
-def get_modified(number):
-    return number / 10
+def get_result(old_number, new_number, i):
+    multiptication = get_degree(0, i, 1)
+    return new_number * multiptication + old_number
 
 def get_last_number(number):
     return number % 10
