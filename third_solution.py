@@ -22,17 +22,19 @@ def sort_arrays(number):
     first, second = read_all_data(number)
     return sorted(first), sorted(second, reverse=True)
 
-def combine_and_show(arrays, i):
+def combine(arrays, i, result_array):
     first = arrays[0]
     second = arrays[1]
     number = len(first)
     if (i < number):
-        print(first[i], " ", second[i])
-        return combine_and_show(arrays, i + 1)
+        result_array.append([first[i], second[i]])
+        return combine(arrays, i + 1, result_array)
+    else:
+        return result_array
     
 
 def main():
-    combine_and_show(sort_arrays(read_number()), 0)
+    print(combine(sort_arrays(read_number()), 0, []))
     
 
 
