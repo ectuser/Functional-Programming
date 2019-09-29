@@ -29,8 +29,8 @@
 #include <fstream>
 using namespace std;
 
-struct coordinates 
-{ 
+struct Triangle
+{
 	int x1, y1, x2, y2, x3, y3;
 };
 
@@ -41,19 +41,19 @@ int get_number()
 	return n;
 }
 
-coordinates get_triangle()
+Triangle get_triangle()
 {
-	coordinates tr;
+	Triangle tr;
 	cin >> tr.x1 >> tr.y1 >> tr.x2 >> tr.y2 >> tr.x3 >> tr.y3;
 	return tr;
 }
 
-vector<coordinates> create_coord_array(int n) {
-	vector<coordinates> coords(n);
+vector<Triangle> create_coord_array(int n) {
+	vector<Triangle> coords(n);
 	return coords;
 }
 
-vector<coordinates> triangle_loop(int index, vector<coordinates> triangles)
+vector<Triangle> triangle_loop(int index, vector<Triangle> triangles)
 {
 	if (index >= triangles.size())
 	{
@@ -61,10 +61,10 @@ vector<coordinates> triangle_loop(int index, vector<coordinates> triangles)
 	}
 	triangles[index] = get_triangle();
 	return triangle_loop(index + 1, triangles);
-	
+
 }
 
-coordinates triangle_multiplication(int mul_number, coordinates triangle)
+Triangle triangle_multiplication(int mul_number, Triangle triangle)
 {
 	// one particular triangle
 	triangle.x1 *= mul_number;
@@ -76,7 +76,7 @@ coordinates triangle_multiplication(int mul_number, coordinates triangle)
 	return triangle;
 }
 
-vector<coordinates> get_triangles_multiplication(int mul_number, vector<coordinates> triangles, int index) {
+vector<Triangle> get_triangles_multiplication(int mul_number, vector<Triangle> triangles, int index) {
 	// adding all triangles together
 	if (index >= triangles.size()) {
 		return triangles;
@@ -85,8 +85,8 @@ vector<coordinates> get_triangles_multiplication(int mul_number, vector<coordina
 	return get_triangles_multiplication(mul_number, triangles, index + 1);
 }
 
-coordinates count_new_vector(vector<coordinates> triangles, int index) {
-	coordinates new_vector;
+Triangle count_new_vector(vector<Triangle> triangles, int index) {
+	Triangle new_vector;
 	new_vector.x1 = triangles[index].x2 - triangles[index].x1;
 	new_vector.y1 = triangles[index].y2 - triangles[index].y1;
 	// first math vector
@@ -103,17 +103,17 @@ coordinates count_new_vector(vector<coordinates> triangles, int index) {
 	return new_vector;
 }
 
-vector<coordinates> get_vectors(vector<coordinates> triangles, int index, vector<coordinates> vectors)
+vector<Triangle> get_vectors(vector<Triangle> triangles, int index, vector<Triangle> vectors)
 {
 	if (index >= triangles.size()) {
 		return vectors;
 	}
 	vectors.push_back(count_new_vector(triangles, index)); // add math vectors (of one triangle) to vectors array
 	return get_vectors(triangles, index + 1, vectors);
-	
+
 }
 
-void show(vector<coordinates> result, int i)
+void show(vector<Triangle> result, int i)
 {
 	if (i < result.size())
 	{
@@ -122,8 +122,8 @@ void show(vector<coordinates> result, int i)
 	}
 }
 
-vector<coordinates> create_empty_vector() {
-	vector<coordinates> vectors;
+vector<Triangle> create_empty_vector() {
+	vector<Triangle> vectors;
 	return vectors;
 }
 
